@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+        }
+        .main{
+            width: 100%;
+            max-width: 50rem;
+        }
+        .card{
+            background: #7b7b7b;
+            padding: 1rem;
+            border-radius: 1rem;
+            width: 100%;
+            min-width: 15rem;
+            img{
+                width: 100%;
+                max-height: 30rem;
+                object-fit: contain;
+                border-radius: 1rem;
+            }
+            p{
+                color: rgb(0, 0, 0);
+                font: bolder 1rem 'Calibri';
+            }
+        }
+        .moreImages{
+            margin-top: 3rem;
+            h2{
+                margin-bottom: 1rem;
+                font: bold 2rem 'Calibri';
+
+            }
+
+        }
+        .imageList{
+            display: flex;
+            width: 100%;
+            list-style: none;
+            gap: 1rem;
+            li{
+                flex: 1;
+            }
+            img{
+                background: #000;
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: contain;
+
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+            <img src="#--Source--#" alt="">
+            <p class="title">#--Title--#</p>
+            <p class="description">Description: #--Description--# </p>
+            <p class="price">Price: #--Price--# </p>
+            <p class="brand">Brand: #--Brand--# </p>
+        </div>
+        <div class="moreImages">
+            <h2>More Images: </h2>
+            <ul class="imageList">
+                <li>
+                    <img src="#--ImageUrl--#" alt="">
+                </li>
+                <li>
+                    <img src="#--ImageUrl--#" alt="">
+                </li>
+                <li>
+                    <img src="#--ImageUrl--#" alt="">
+                </li>
+                <li>
+                    <img src="#--ImageUrl--#" alt="">
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>

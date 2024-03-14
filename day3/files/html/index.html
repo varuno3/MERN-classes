@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping karlo</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem;
+        }
+        h1{
+            font: bold 2rem 'Calibri';
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .item-cards{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        .products{
+            border-radius: 1rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            img{
+                width: 100%;
+                max-width: 15rem;
+                border-radius: 1rem;
+                aspect-ratio: 1/1;
+                background: #000000;
+                object-fit: contain;
+                object-position: center;
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+        .title{
+           font: normal 1rem 'Calibri';
+           color: #000000;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>SHOP</h1>
+        <ul class="item-cards">
+            <!-- #data# -->
+        </ul>
+    </div>
+</body>
+</html>

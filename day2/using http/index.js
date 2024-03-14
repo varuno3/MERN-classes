@@ -1,7 +1,6 @@
 const http = require('node:http')
 const fs = require('fs');
 
-
 const app = http.createServer((req, res) => {
     let date = (new Date()).toDateString();
     fs.appendFileSync('./files/log.txt',`Request : ${date} & Req : ${req.url}` );
