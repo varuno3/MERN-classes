@@ -10,7 +10,12 @@ app.get('/', (req, res)=>{
 })   
 app.get('/about', (req, res)=>{
     res.sendFile(__dirname + '/files/html/about.html' );
-})   
+})
+
+app.post('/', (req, res)=>{
+    console.log('a post req was made');
+    res.end('Successfully submitted')
+})
 
 app.listen(port, ()=>{
     console.log(`Listening on port: ${port}`);
