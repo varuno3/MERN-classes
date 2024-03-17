@@ -34,13 +34,13 @@
     },
     {
         "id": 3,
-        "name": "The City Wanderer",
-        "duration": 9,
-        "maxGroupSize": 20,
+        "name": "DELI",
+        "duration": 3,
+        "maxGroupSize": 12,
         "difficulty": "easy",
-        "ratingsAverage": 4.6,
-        "ratingsQuantity": 54,
-        "price": 1197,
+        "ratingsAverage": 4.9,
+        "ratingsQuantity": 33,
+        "price": 1497,
         "summary": "Living the life of Wanderlust in the US' most beatiful cities",
         "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem ipsum dolor sit amet.\nConsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat!",
         "imageCover": "tour-4-cover.jpg",
@@ -53,29 +53,6 @@
             "2021-03-11,10:00",
             "2021-05-02,10:00",
             "2021-06-09,10:00"
-        ]
-    },
-    {
-        "id": 4,
-        "name": "The Park Camper",
-        "duration": 10,
-        "maxGroupSize": 15,
-        "difficulty": "medium",
-        "ratingsAverage": 4.9,
-        "ratingsQuantity": 19,
-        "price": 1497,
-        "summary": "Breathing in Nature in America's most spectacular National Parks",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!",
-        "imageCover": "tour-5-cover.jpg",
-        "images": [
-            "tour-5-1.jpg",
-            "tour-5-2.jpg",
-            "tour-5-3.jpg"
-        ],
-        "startDates": [
-            "2021-08-05,10:00",
-            "2022-03-20,10:00",
-            "2022-08-12,10:00"
         ]
     },
     {
@@ -172,6 +149,26 @@
     },
     {
         "name": "The Northern Lights",
+        "duration": 3,
+        "maxGroupSize": 12,
+        "difficulty": "easy",
+        "ratingsAverage": 4.9,
+        "ratingsQuantity": 33,
+        "price": 1497,
+        "id": 9
+    },
+    {
+        "name": "LISA",
+        "duration": 3,
+        "maxGroupSize": 12,
+        "difficulty": "easy",
+        "ratingsAverage": 4.9,
+        "ratingsQuantity": 33,
+        "price": 1497,
+        "id": 8
+    },
+    {
+        "name": "LISA",
         "duration": 3,
         "maxGroupSize": 12,
         "difficulty": "easy",

@@ -31,7 +31,8 @@ app.get('/login', (req, res)=>{
     let userdata = usersData[userIndex];
     console.log(userdata);
     let  pageHtml = userPage.replace('#--username--#', userdata.username);
-    res.redirect(pageHtml);
+    res.header('Content-Type','text/html');
+    res.send(pageHtml);
 })
 
 app.post('/signup', (req, res)=>{
