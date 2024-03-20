@@ -1,79 +1,154 @@
-const fs = require('fs');
+const { param } = require('../routes/tourRoutes');
+const Tour = require('./../models/tourModel');
 
-let tours = fs.readFileSync('./files/tours.json', 'utf8');
-tours = JSON.parse(tours);
-
-module.exports.getAllTours = (req, res) => {
-    res.json(tours);
-}
-
-module.exports.getTour = (req, res)=>{
-    const id = parseInt(req.params.id);
-    const tour = tours.find(tour => tour.id === id);
-    if (!tour) {
-        return res.status(404).json({ message: 'Tour not found' });
+module.exports.getAllTours = async (req, res) => {
+    try{
+        const tours = await Tour.find(); //If nothing is specified then this returns all the available data
+        res.status(200);
+        res.json({
+            status: 'success',
+            body:{
+                tours: tours
+            }
+        });
     }
-    res.json(tour);
+    catch(err){
+        res.status(500);
+        res.json({
+            status: 'fail',
+            message:err.message,
+        });
+    }
 }
 
-module.exports.addNewTour = (req, res) => {
-    const newTour = req.body;
-    const{name, price} = newTour;
+module.exports.getTour = async(req, res) => {
+    const { id: paramId } = req.params;
+    try{
+        const tour = await Tour.findOne({
+            "_id": paramId
+        }); //findOne({params},  {fields to show}).. use the params to search for a particular data matching the required params, fields to show will return the specified fields, will return all if undefined
+        if(!tour) throw new Error("Invalid Tour Id");
+        res.status(200);
+        res.json({
+            status: 'success',
+            body:{
+                tour: tour
+            }
+        });
+    }
+    catch(err){
+        res.status(404);
+        res.json({
+            status: 'fail',
+            message:err.message,
+        });
+    }
+}
+
+
+module.exports.addNewTour = async (req, res) => {
+    // const newTour = req.body;
+    // const{name, price} = newTour;
     
-    if(!name || !price){
-        return res.status(400).json({message:'Missing name or price'})
-    };
-    newTour.id = tours[tours.length-1].id + 1;
-    tours.push(newTour);
-    fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{});
-    res.status(201).json(newTour);
+    // if(!name || !price){
+    //     return res.status(400).json({message:'Missing name or price'})
+    // };
+    // newTour.id = tours[tours.length-1].id + 1;
+    // tours.push(newTour);
+    // fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{});
+    // res.status(201).json(newTour);
+    try{
+        const newTour = await Tour.create(req.body); //this used to create a new document within that DB
+        res.status(201);
+        res.send({
+            status: 'success',
+            body:{
+                tour: newTour
+            }
+        });
+    }
+    catch(err){
+        console.log(err);
+        res.status(422);
+        res.send({
+            status: 'fail',
+            message:err.message,
+        });
+    }
 }
 
   
-module.exports.replaceTour = (req,res) =>{
-    const id = parseInt(req.params.id);
-    const updatedTour = req.body;
-    const{name, price} = newTour;
-    if(!name || !price){
-        return res.status(400).json({message:'Missing name or price'})
-    };
-    const index = tours.findIndex(tour => tour.id === id);
-    if (index === -1) {
-        return res.status(404).json({ message: 'Tour with given id is not found' });
-    }
-    updatedTour.id = id; 
-    tours[index] = updatedTour;
-   fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{
+// module.exports.replaceTour = (req,res) =>{
+//     const id = parseInt(req.params.id);
+//     const updatedTour = req.body;
+//     const{name, price} = newTour;
+//     if(!name || !price){
+//         return res.status(400).json({message:'Missing name or price'})
+//     };
+//     const index = tours.findIndex(tour => tour.id === id);
+//     if (index === -1) {
+//         return res.status(404).json({ message: 'Tour with given id is not found' });
+//     }
+//     updatedTour.id = id; 
+//     tours[index] = updatedTour;
+//    fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{
         
-    });
-    res.json(updatedTour);
+//     });
+//     res.json(updatedTour);
+// }
+
+module.exports.updateTour = async (req, res) => {
+    const { id: paramId } = req.params;
+    const {_id, __v, ...body} = req.body;
+    try{
+        const tour = await Tour.findOneAndUpdate({"_id": paramId,}, body, {
+            new: true,
+        });
+        //How findoneandupdateworks:  It looks for the document in database where _id matches and updates it with the data provided in request
+        // db.collection.findOneAndUpdate(
+        //     { name: "John" }, // Filter
+        //     { $set: { age: 35 } }, // Update
+        //     { 
+        //         returnOriginal: false // Return the updated document
+        //     }
+        // )
+        //returns null if specified params are not  found in a document to update
+
+        if(!tour) throw new Error("Invalid Tour Id");
+        res.status(201);
+        res.json({
+            status: 'success',
+            body: tour
+        });
+    }
+    catch(err){
+        res.status(404);
+        res.json({
+            status: 'fail',
+            message:err.message,
+        });
+    }
 }
 
-module.exports.updateTour = (req, res) => {
-    const id = parseInt(req.params.id);
-    console.log(id);
-    const updates = req.body;
-    console.log(req.body);
-    const index = tours.findIndex(tour => tour.id === id);
-    if (index === -1) {
-        return res.status(404).json({ message: 'Tour is not found' });
+module.exports.deleteTour = async (req, res) => {
+    const { id: paramId } = req.params;
+    try{
+        const tour = await Tour.findOneAndDelete({
+            "_id": paramId
+        });
+        //How findoneanddeleteworks : it  will search for the object with given conditions and delete that object from database. If no objects is found it returns null
+        if(!tour) throw new Error("Invalid Tour Id");
+        res.status(204);
+        res.json({
+            status: 'success',
+            body: null
+        });
     }
-    Object.assign(tours[index], updates);
-    fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{
-        
-    });
-    res.json(tours[index]);
-}
-
-module.exports.deleteTour = (req, res) => {
-    const id = parseInt(req.params.id);
-    const index = tours.findIndex(tour => tour.id === id);
-    if (index === -1) {
-        return res.status(404).json({ message: 'Tour not found' });
+    catch(err){
+        res.status(404);
+        res.json({
+            status: 'fail',
+            message:err.message,
+        });
     }
-    tours.splice(index, 1);
-    fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{
-        
-    });
-    res.sendStatus(204);
 }

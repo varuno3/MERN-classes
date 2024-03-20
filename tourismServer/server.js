@@ -1,11 +1,14 @@
-const express = require('express');
-const tourRouter = require('./routes/tourRoutes');
+const app = require('./app');
+const mongoose  = require('mongoose');
 
-const app = express();
-app.use(express.json());
 
-app.use('/tours',tourRouter)
+DATABASE_URL = "mongodb+srv://varunbadoni987:<password>@cluster0.sxnzdr8.mongodb.net/Test1?retryWrites=true&w=majority&appName=Cluster0";
+DATABASE_PASSWORD = "sqvVu0svBVrpx64S";
 
+const dbUrl = DATABASE_URL.replace('<password>', DATABASE_PASSWORD);
+mongoose.connect(dbUrl).then((con)=>{
+    console.log('-----------------Connection Established--------------')
+})
 
 const PORT = 3000;
 app.listen(PORT, () => {
