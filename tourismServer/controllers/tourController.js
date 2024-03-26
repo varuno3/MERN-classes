@@ -3,7 +3,21 @@ const Tour = require('./../models/tourModel');
 
 module.exports.getAllTours = async (req, res) => {
     try{
-        const tours = await Tour.find(); //If nothing is specified then this returns all the available data
+        // const tours = await Tour.find(); //If nothing is specified then this returns all the available data
+
+        // const tours = await Tour
+        //                 .find()
+        //                 .where("difficulty")
+        //                 .equals("easy")
+        //                 .where("duration")
+        //                 .lt(10)
+        //                 .where("price")
+        //                 .lt(2000)
+        //                 .select("name")
+        //                 .sort('-price')
+
+        //the above stuff is hard coding
+        
         res.status(200);
         res.json({
             status: 'success',
@@ -78,24 +92,29 @@ module.exports.addNewTour = async (req, res) => {
 }
 
   
-// module.exports.replaceTour = (req,res) =>{
-//     const id = parseInt(req.params.id);
-//     const updatedTour = req.body;
-//     const{name, price} = newTour;
-//     if(!name || !price){
-//         return res.status(400).json({message:'Missing name or price'})
-//     };
-//     const index = tours.findIndex(tour => tour.id === id);
-//     if (index === -1) {
-//         return res.status(404).json({ message: 'Tour with given id is not found' });
-//     }
-//     updatedTour.id = id; 
-//     tours[index] = updatedTour;
-//    fs.writeFile('./files/tours.json', JSON.stringify(tours), ()=>{
-        
-//     });
-//     res.json(updatedTour);
-// }
+module.exports.replaceTour = async (req,res) =>{
+    const {id: paramId} = req.params;
+    const {_id, __v, ...body} = req.body;
+    try{
+        const tour = await Tour.findOneAndReplace({"_id": paramId,}, body, {
+            new: true,
+        });
+        if(!tour) throw new Error("Invalid Tour Id");
+        res.status(201);
+        res.json({
+            status: 'success',
+            body: tour
+        });
+    }
+    catch(err){
+        res.status(404);
+        res.json({
+            status: 'fail',
+            message:err.message,
+        });
+    }
+
+}
 
 module.exports.updateTour = async (req, res) => {
     const { id: paramId } = req.params;
@@ -104,6 +123,7 @@ module.exports.updateTour = async (req, res) => {
         const tour = await Tour.findOneAndUpdate({"_id": paramId,}, body, {
             new: true,
         });
+        
         //How findoneandupdateworks:  It looks for the document in database where _id matches and updates it with the data provided in request
         // db.collection.findOneAndUpdate(
         //     { name: "John" }, // Filter

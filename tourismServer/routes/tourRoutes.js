@@ -11,7 +11,7 @@ tourRouter
 tourRouter
     .route("/:id")
     .get(tourController.getTour)
-    // .put(tourController.replaceTour)
+    .put(tourController.replaceTour)
     .patch(tourController.updateTour)
     .delete(tourController.deleteTour);
 
