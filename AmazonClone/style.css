@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.nav-logo{
+    background-image: url("https://m.media-amazon.com/images/G/31/gno/sprites/nav-sprite-global-2x-reorg-privacy._CB600086755_.png");
+    background-size: 350px;
+}
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background: #000;
+    color: white;
+}
+.logo-container{
+    display: flex;
+}
+.amazon-logo{
+    width: 97px;
+    height: 30px;
+    background-position: -10px -51px;
+
+}
+.location-container{
+    display: flex;
+}
+
+.location-logo{
+    background-position: -71px -378px;
+    width: 15px;
+    height: 18px;
+}
+
+.search-container{
+    background: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+}

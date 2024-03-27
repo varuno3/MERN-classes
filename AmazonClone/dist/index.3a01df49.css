@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-logo {
+  background-image: url("https://m.media-amazon.com/images/G/31/gno/sprites/nav-sprite-global-2x-reorg-privacy._CB600086755_.png");
+  background-size: 350px;
+}
+
+.nav-bar {
+  color: #fff;
+  background: #000;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  display: flex;
+}
+
+.logo-container {
+  display: flex;
+}
+
+.amazon-logo {
+  background-position: -10px -51px;
+  width: 97px;
+  height: 30px;
+}
+
+.location-container {
+  display: flex;
+}
+
+.location-logo {
+  background-position: -71px -378px;
+  width: 15px;
+  height: 18px;
+}
+
+.search-container {
+  background: #fff;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+}
+/*# sourceMappingURL=index.3a01df49.css.map */
